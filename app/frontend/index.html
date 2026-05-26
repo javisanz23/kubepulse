@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>KubePulse Dashboard</title>
+    <style>
+        body { background: #111; color: #deff9a; font-family: sans-serif; text-align: center; padding-top: 50px; }
+        .card { background: #222; padding: 30px; border-radius: 10px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        h1 { font-size: 3em; margin: 0; }
+        .counter { font-size: 5em; color: #fff; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>KubePulse</h1>
+        <p>Métricas de tráfico en tiempo real</p>
+        <div class="counter" id="total-visits">0</div>
+        <p>Visitas registradas en Redis</p>
+    </div>
+
+    <script>
+        async function fetchPulse() {
+            try {
+                // Apuntamos al puerto 3000 que es donde expone el Backend
+                const response = await fetch('/api/pulse'); // No necesita ni IPs ni puertos, va directo a la raíz
+                const data = await response.json();
+                document.getElementById('total-visits').innerText = data.visits;
+            } catch (err) {
+                console.error("Error conectando al backend", err);
+            }
+        }
+        fetchPulse();
+        setInterval(fetchPulse, 2000); // Actualiza cada 2 segundos
+    </script>
+</body>
+</html>

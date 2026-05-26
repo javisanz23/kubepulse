@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: ./app/backend
+    ports:
+      - "3000:3000"
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  frontend:
+    build: ./app/frontend
+    ports:
+      - "8081:80"  # <--- Cambiado de 8080 a 8081
+    depends_on:
+      - backend
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"

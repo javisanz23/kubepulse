@@ -1,0 +1,9 @@
+# Herramientas del sistema y editores
+.vscode/
+.idea/
+*.log
+.DS_Store
+
+# Docker y temporales
+node_modules/
+.env
