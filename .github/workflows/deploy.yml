@@ -26,7 +26,7 @@ jobs:
       with:
         context: ./app/backend
         push: true
-        tags: ${{ secrets::DOCKERHUB_USERNAME }}/kubepulse-backend:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/kubepulse-backend:latest
 
     # 4. Construir y subir la imagen del Frontend
     - name: 📦 Build and Push Frontend
@@ -34,4 +34,4 @@ jobs:
       with:
         context: ./app/frontend
         push: true
-        tags: ${{ secrets::DOCKERHUB_USERNAME }}/kubepulse-frontend:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/kubepulse-frontend:latest
